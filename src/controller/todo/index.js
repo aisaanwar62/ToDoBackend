@@ -1,4 +1,5 @@
 const express = require(`express`);
+const getTodo = require("./get-todo");
 
 const router = express.Router();
 const todos = [];
@@ -21,9 +22,10 @@ module.exports = () => {
     res.status(201).send({ todo: newTodo });
   });
 
-  router.get("/", (req, res) => {
-    res.send({ todos: todos });
-  });
+  router.get(`/`, getTodo);
+  // (req, res) => {
+  //   res.send({ todos: todos });
+  // });
 
   router.delete("/:id", (req, res) => {
     const todoId = req.params.id;
@@ -67,4 +69,3 @@ module.exports = () => {
 
   return router;
 };
-
